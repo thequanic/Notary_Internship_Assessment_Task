@@ -1,17 +1,22 @@
 const mongoose = require(`mongoose`);
 const {Schema}=mongoose;
-const UserSchema = new Schema({
-    name:{
-        type:String,
+const RevenueSchema = new Schema({
+    user:
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    },
+    amount:{
+        type:Number,
         required: true
     },
-    email:{
-        type:String,
-        required:true,
+    dateReceived:{
+        type:Date,
+        default:Date.now
     }
 
 })
 
-const User=mongoose.model(`user`,UserSchema);
-//User.createIndexes();
-module.exports= User;
+const Revenue=mongoose.model(`revenue`,RevenueSchema);
+
+module.exports= Revenue;
